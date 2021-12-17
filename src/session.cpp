@@ -14,7 +14,8 @@ namespace boost {
 namespace proxy_info {
 
 proxy_infos
-session::query_hostname(std::string const &hostname)
+session::query(std::string const &hostname,
+               std::string const &service)
 {
     std::vector<proxy_info> result;
 
@@ -30,9 +31,11 @@ default_session()
 }
 
 proxy_infos
-query_hostname(std::string const &hostname, session &s)
+query(std::string const &hostname,
+      std::string const &service,
+      session &s)
 {
-    return s.query_hostname(hostname);
+    return s.query(hostname, service);
 }
 
 }

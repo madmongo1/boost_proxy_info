@@ -10,22 +10,24 @@
 #include <boost/proxy_info.hpp>
 #include <iostream>
 
-int main()
+int
+main()
 {
     std::string host = "localhost";
+    std::string service = "http";
 
-    auto proxies = boost::proxy_info::query_hostname(host);
+    auto proxies = boost::proxy_info::query(host, service);
 
-    std::cout << "proxies for " << host << ": " << proxies << '\n';
+    std::cout << "proxies for " << host << ":" << service << " : " << proxies
+              << '\n';
 
     if (proxies.direct())
     {
         std::cout << "direct connection\n";
-    }
-    else
+    } else
     {
         std::cout << "trying these proxies in order:\n";
-        for (auto&& pi : proxies)
+        for (auto &&pi: proxies)
             std::cout << pi << '\n';
     }
 }

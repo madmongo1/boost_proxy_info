@@ -115,6 +115,10 @@ struct session
     ///             contacted. If an IP address is specified it should be in
     ///             dotted decimal (IPV4) or hex (IPV6) format.
     ///
+    /// @param      service is a the service identifier or port number. For
+    ///             example "http" or "https". The case of this input is
+    ///             ignored. "HtTp" is equivalent to "HTTP" and "http".
+    ///
     /// @returns    An object describing how a client may reach the host. If an
     ///             empty object is returned, the URL should be contacted
     ///             directly.
@@ -122,7 +126,7 @@ struct session
     /// @throws     an exception derived from std::exception may be thrown if
     ///             there is an internal error or the URL is malformed.
     proxy_infos
-    query_hostname(std::string const &hostname);
+    query(std::string const &hostname, std::string const &service);
 };
 
 /// @brief  Return a reference to a singlton session object.
@@ -133,8 +137,27 @@ struct session
 session &
 default_session();
 
+/// @brief      Query the session's caches and services for a given hostname
+///             and service.
+///
+/// @param      hostname is the fqdn or ip address of the host to be
+///             contacted. If an IP address is specified it should be in
+///             dotted decimal (IPV4) or hex (IPV6) format.
+///
+/// @param      service is a the service identifier or port number. For
+///             example "http" or "https". The case of this input is
+///             ignored. "HtTp" is equivalent to "HTTP" and "http".
+///
+/// @returns    An object describing how a client may reach the host. If an
+///             empty object is returned, the URL should be contacted
+///             directly.
+///
+/// @throws     an exception derived from std::exception may be thrown if
+///             there is an internal error or the URL is malformed.
 proxy_infos
-query_hostname(std::string const &hostname, session &s = default_session());
+query(std::string const &hostname,
+      std::string const &port,
+      session &s = default_session());
 
 } // namespace proxy_info
 } // namespace boost
