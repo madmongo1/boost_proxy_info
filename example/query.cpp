@@ -14,7 +14,8 @@ int main()
 {
     std::string host = "localhost";
 
-    auto proxies = boost::proxy_info::query_hostname("localhost");
+    auto proxies = boost::proxy_info::query_hostname(host);
+
     std::cout << "proxies for " << host << ": " << proxies << '\n';
 
     if (proxies.direct())
