@@ -27,7 +27,7 @@ operator<<(std::ostream &os, proxy_infos const &pis)
 {
     if (pis.size() == 0)
     {
-        return os << "direct";
+        return os << "direct://";
     }
     else
     {

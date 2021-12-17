@@ -16,4 +16,15 @@ int main()
 
     auto proxies = boost::proxy_info::query_hostname("localhost");
     std::cout << "proxies for " << host << ": " << proxies << '\n';
+
+    if (proxies.direct())
+    {
+        std::cout << "direct connection\n";
+    }
+    else
+    {
+        std::cout << "trying these proxies in order:\n";
+        for (auto&& pi : proxies)
+            std::cout << pi << '\n';
+    }
 }

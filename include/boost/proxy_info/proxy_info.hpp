@@ -79,6 +79,12 @@ struct proxy_infos
         return infos_.size();
     }
 
+    bool
+    direct() const
+    {
+        return size() == 0;
+    }
+
 private:
     std::vector<proxy_info> infos_;
 };
